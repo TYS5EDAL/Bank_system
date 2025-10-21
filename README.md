@@ -1,39 +1,36 @@
-# FoxVault (Banking) - Simple Console Bank System
+# FoxVault — Simple Console Banking Demo (C)
 
-Short, single-file banking demo (C). This project implements a small console-based account system with:
-- account login (ID + PIN)
-- create account
-- check balance, deposit, withdraw
-- change PIN
-- admin menu: list/delete accounts
-- plain binary account storage (`accounts.dat`) and text log (`transactions.log`)
+FoxVault is a compact Windows console demo implementing a minimal banking system in C (C11-compatible). It demonstrates basic account management with simple binary storage and activity logging — useful as an educational example or starter project.
 
-This copy has English identifiers and user-facing strings.
+Features
+- Account login with ID + PIN
+- Create account flow
+- Check balance, deposit, withdraw
+- Change PIN
+- Admin menu: list and delete accounts
+- Accounts stored in binary file (`accounts.dat`)
+- Activity appended to `transactions.log`
 
----
+Repository layout
+- README.md — this file
+- logs/ — runtime logs (transactions)
+- src/
+  - main.c — program entry
+  - bank_system.c — application logic and file I/O
+  - bank_system.h — data structures and declarations
 
-## Quick facts
-
-- Language: C (C11-compatible)
-- Platform: Windows (console)
-- Storage: binary file `accounts.dat` (accounts), text file `transactions.log` (activity)
-- Admin ID: `9999` (PIN `9999`)
+Quick facts
+- Language: C (C11)
+- Target: Windows console
+- Admin account: ID `9999`, PIN `9999`
 - Create-account trigger at login: enter ID `9998`
 
----
-
-## Files
-
-- `main.c` — program entry, runs the state machine loop
-- `bank_system.c` — main application logic (UI, file ops, state machine)
-- `bank_system.h` — data structures and function declarations
-- `accounts.dat` — created at runtime (binary, contains Account records)
-- `transactions.log` — created/updated at runtime (activity log)
-
----
-
-## Build (Windows)
-
-Using GCC (MinGW / MSYS2):
+Build (Windows, MinGW/MSYS2)
 ```bash
-gcc -Wall Bank_system -o bank_system main.c bank_system.c
+gcc -Wall -O2 -o bank_system src/main.c src/bank_system.c
+```
+
+Usage
+1. Run the compiled `bank_system.exe`.
+2. Log in with an existing account, use `9998` to create a new account, or log in as admin (`9999` / `9999`) to manage accounts.
+3. Check `transactions.log` and `logs/` for activity.
