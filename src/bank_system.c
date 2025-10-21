@@ -152,10 +152,10 @@ void state_machine(){
 /****************************************************************************************************************************************/
 
 void load_accounts(){
-    accounts_file = fopen("accounts.dat", "rb+");
+    accounts_file = fopen("./logs/accounts.dat", "rb+");
     if (accounts_file == NULL) {
         /* file doesn't exist, create a new one */
-        accounts_file = fopen("accounts.dat", "wb+");
+        accounts_file = fopen("./logs/accounts.dat", "wb+");
         if (accounts_file == NULL) {
             perror("Failed to open or create accounts file");
             exit(1); 
@@ -166,7 +166,7 @@ void load_accounts(){
     // Example: Account user1 = {1000, "User1", 1234, 169.6}; fwrite(&user1, sizeof(user1), 1, accounts_file);
 }
 void open_logs(){
-    logs_file = fopen("transactions.log", "a"); 
+    logs_file = fopen("./logs/transactions.log", "a"); 
     if (logs_file == NULL) {
         perror("Failed to open or create log file");
         exit(1);
