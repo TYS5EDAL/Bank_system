@@ -15,6 +15,7 @@ State_t state;
 Account current_user;
 
 /* Function declarations (English names) */
+void create_logs();
 void load_accounts();
 void open_logs();
 
@@ -50,6 +51,7 @@ void state_machine(){
     switch (state){
         case INIT:
             printf("\r\n");
+            create_logs();
             load_accounts();
             open_logs();
             state = LOGIN;
@@ -151,6 +153,15 @@ void state_machine(){
 /*******************************************  File loading  **************************************************************************/
 /****************************************************************************************************************************************/
 
+void create_logs(){
+    char *logs_dir = "./logs";
+    if (_access(logs_dir, 0) == -1) {
+        if (_mkdir(logs_dir) != 0) {
+            perror("Failed to create logs directory");
+            exit(1);
+        }
+    }
+}
 void load_accounts(){
     accounts_file = fopen("./logs/accounts.dat", "rb+");
     if (accounts_file == NULL) {
